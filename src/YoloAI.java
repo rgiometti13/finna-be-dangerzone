@@ -6,6 +6,7 @@ import core.Letter;
 import core.Dictionary;
 import core.Space;
 import core.TestDriver;
+import java.util.*;
 
 public class YoloAI extends Player {
 	public Board board;
@@ -26,7 +27,18 @@ public class YoloAI extends Player {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+	public Word wordOptimizer(ArrayList<Word> wa){
+	Word bestWord; 		
+	bestWord = new Word("Nothing");
+	for (int i = 0; i< wa.size(); i++){
+		if (i == 0) bestWord = wa.get(i);
+		else {
+			if (wa.get(i).getVal()>bestWord.getVal()) bestWord = wa.get(i);
+		}	
+	}
+	return bestWord; 
+	}
 	
 	//wins the game
 	public void winGame(){

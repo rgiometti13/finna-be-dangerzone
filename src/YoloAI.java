@@ -1,11 +1,4 @@
-import core.LetterBag;
-import core.Player;
-import core.Word;
-import core.Board;
-import core.Letter;
-import core.Dictionary;
-import core.Space;
-import core.TestDriver;
+import core.*;
 import java.util.*;
 
 public class YoloAI extends Player {
@@ -38,6 +31,13 @@ public class YoloAI extends Player {
 		}	
 	}
 	return bestWord; 
+	}
+	
+	public ArrayList<Word> compileWords(ArrayList<Letter> playerLetters){
+	ArrayList<Letter> availableLetters = playerLetters;
+	
+	ArrayList<Word> wordsPossible = new ArrayList<Word>();
+	return wordsPossible; 
 	}
 	
 	//wins the game

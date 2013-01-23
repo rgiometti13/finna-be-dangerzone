@@ -1,4 +1,6 @@
 import core.*;
+import core.Dictionary;
+
 import java.util.*;
 
 public class YoloAI extends Player {
@@ -35,9 +37,11 @@ public class YoloAI extends Player {
 	}
 	
 	public ArrayList<Word> compileWords(ArrayList<Letter> playerLetters){
+	Dictionary d = new Dictionary(); 
 	ArrayList<Letter> availableLetters = playerLetters;
 	for (int i = 0; i<availableLetters.size(); i++){
-		
+		Letter firstChar = availableLetters.get(i);
+		availableLetters.remove(i);
 		for(int x = 0; x <availableLetters.size(); x++){
 			
 		}

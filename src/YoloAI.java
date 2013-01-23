@@ -16,9 +16,10 @@ public class YoloAI extends Player {
 		board=b;
 	}
 	
-	public Word makeMove() {
-		// TODO Auto-generated method stub
-		return null;
+	public Word makeMove(Board b){
+		Board board = b; 
+		Word word = new Word("Default");
+		return word; 
 	}
 	
 	public Word wordOptimizer(ArrayList<Word> wa){
@@ -35,6 +36,14 @@ public class YoloAI extends Player {
 	
 	public ArrayList<Word> compileWords(ArrayList<Letter> playerLetters){
 	ArrayList<Letter> availableLetters = playerLetters;
+	for (int i = 0; i<availableLetters.size(); i++){
+		
+		for(int x = 0; x <availableLetters.size(); x++){
+			
+		}
+			
+	}
+	
 	
 	ArrayList<Word> wordsPossible = new ArrayList<Word>();
 	return wordsPossible; 
@@ -52,8 +61,8 @@ public class YoloAI extends Player {
 		
 	}
 	//finds all words off of a given letter on the board
-	public Word[] findWords(Letter a){
-		Dictionary d=new Dictionary();
-		for(int i=2;i<)
-	}
+//	public Word[] findWords(Letter a){
+//		Dictionary d=new Dictionary();
+//		for(int i=2;i<)
+//	}
 }

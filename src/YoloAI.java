@@ -24,6 +24,12 @@ public class YoloAI extends Player {
 		return word; 
 	}
 	
+	public int scoreWord(Word w){
+		int score = 0; 
+		
+		return score; 
+	}
+	
 	public Word wordOptimizer(ArrayList<Word> wa){
 	Word bestWord; 		
 	bestWord = new Word("Nothing");

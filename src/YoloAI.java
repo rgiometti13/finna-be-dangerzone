@@ -60,19 +60,37 @@ public class YoloAI extends Player {
 	}
 	
 	//wins the game
-	public void winGame(){
+	public void winGame()
+	{
 		for(int x=0;x<15;x++){
 			for(int y=0;y<15;y++){
 				
 			}
 		}
 		
-		
+
 		
 	}
 	//finds all words off of a given letter on the board
-//	public Word[] findWords(Letter a){
-//		Dictionary d=new Dictionary();
-//		for(int i=2;i<)
-//	}
+	public ArrayList<Word> findWords(Letter a,ArrayList<Letter> g){
+		Dictionary d=new Dictionary();
+		ArrayList<Letter> letters=g;
+		ArrayList<String> hand=new ArrayList();
+		ArrayList<Word> words=new ArrayList();
+		for(int i=0;i<letters.size();i++){
+			Character q=letters.get(i).getCharacter();
+			hand.add(q.toString());
+		}
+		Character c=a.getCharacter();
+		String s=c.toString();
+		for(int i=0;i<letters.size();i++)
+			{
+			s=s+hand.get(i);
+			words.add(new Word(s));
+			letters.remove(i);
+			findWords(a,letters);
+		
+			}
+		return words;
+		}	
 }

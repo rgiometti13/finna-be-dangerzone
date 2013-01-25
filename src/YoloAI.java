@@ -92,4 +92,52 @@ public class YoloAI extends Player {
 			}
 		return words;
 		}	
+
+	//returns a random String to intimidate opponents
+	public String trashTalk(){
+		String trash; 
+		Random r = new Random();
+		int rvalue = r.nextInt(10);
+		
+		if (rvalue == 0){
+			trash = "WE RIDE!!!";	
+		}
+		
+		else if (rvalue == 1){
+			trash = "FEEL MY WRATH!!!";
+		}
+		
+		else if (rvalue == 2){
+			trash = "DEATH TO THE HEATHEN!!!";
+		}
+		
+		else if (rvalue == 3){
+			trash = "IMA FIRIN' MAH LAZER!!!";
+		}
+		
+		else if (rvalue == 4){
+			trash = "VAE VICTUS, B*TCH!!!";
+		}
+		
+		else if (rvalue == 5){
+			trash = "INFIDEL!!!";
+		}
+		
+		else if (rvalue == 6){
+			trash = "YOUR HERALDRY WILL ADORN MY GALLOWS!!!";
+		}
+		
+		else if (rvalue == 7){
+			trash = "SEND THEM BACK TO THE DIGITAL SEA!!!";
+		}
+		
+		else if (rvalue == 8){
+			trash = "TIME 2 DIE, PUNY HUMAN!!!";
+		}
+		
+		else trash = "FOR BUDDHA!!!";
+		
+		return trash; 
+	}
+
 }

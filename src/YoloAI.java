@@ -42,20 +42,19 @@ public class YoloAI extends Player {
 	return bestWord; 
 	}
 	
+	//Returns an ArrayList of Words that contain an argument ArrayList of letters
 	public ArrayList<Word> compileWords(ArrayList<Letter> playerLetters){
 	Dictionary d = new Dictionary(); 
 	ArrayList<Letter> availableLetters = playerLetters;
-	for (int i = 0; i<availableLetters.size(); i++){
-		Letter firstChar = availableLetters.get(i);
-		availableLetters.remove(i);
-		for(int x = 0; x <availableLetters.size(); x++){
-			
-		}
-			
+	ArrayList<Character> availableCharacters = new ArrayList<Character>();
+	for (int i = 0; i < availableLetters.size(); i++){
+	availableCharacters.set(i, availableLetters.get(i).getCharacter());
 	}
-	
-	
+	ArrayList<String> stringWords = d.allStringsWithLetters(availableCharacters);	
 	ArrayList<Word> wordsPossible = new ArrayList<Word>();
+	for (int i = 0; i < stringWords.size(); i++){
+		wordsPossible.set(i, new Word(stringWords.get(i)));
+	}
 	return wordsPossible; 
 	}
 	

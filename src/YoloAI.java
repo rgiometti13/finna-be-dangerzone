@@ -56,7 +56,12 @@ public class YoloAI extends Player {
 		for (int x = 0; x<stringWords.get(i).length(); x++){ 
 		remove = true; 
 			for (int l = 0; l < availableCharacters.size(); l++){
-				if ((stringWords.get(i).charAt(x)==(availableCharacters.get(l)))) remove = false;
+				if ((stringWords.get(i).charAt(x)==(availableCharacters.get(l))))
+				{
+					remove = false;
+					availableCharacters.remove(l);
+					
+				}
 				if(remove==true){
 					x=stringWords.get(i).length()+1;
 				}

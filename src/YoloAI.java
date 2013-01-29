@@ -48,7 +48,7 @@ public class YoloAI extends Player {
 	ArrayList<Letter> availableLetters = playerLetters;
 	ArrayList<Character> availableCharacters = new ArrayList<Character>();
 	for (int i = 0; i < availableLetters.size(); i++){
-	availableCharacters.set(i, availableLetters.get(i).getCharacter());
+	availableCharacters.add(i, availableLetters.get(i).getCharacter());
 	}
 	ArrayList<String> stringWords = d.allStringsWithLetters(availableCharacters);	
 	for (int i = 0; i<stringWords.size(); i++){
@@ -158,5 +158,20 @@ public class YoloAI extends Player {
 		
 		return trash; 
 	}
+
+	
+public static void main(String[] Args){
+	LetterBag q=new LetterBag();
+	YoloAI yolo=new YoloAI(q);
+	ArrayList<Letter> letters=yolo.getLetters();
+	for(int i=0;i<letters.size();i++){
+		System.out.println(letters.get(i).toString());
+	}
+	System.out.println();
+	ArrayList<Word> words=yolo.compileWords(yolo.letters);
+	for(int a=0;a<words.size();a++){
+		System.out.println(words.get(a).toString());
+	}
+}
 
 }

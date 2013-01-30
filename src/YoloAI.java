@@ -42,6 +42,17 @@ public class YoloAI extends Player {
 	return bestWord; 
 	}
 	
+	public ArrayList<Word> compilePermutations(LetterBag b){
+	ArrayList<ArrayList<Word>> allWords = new ArrayList<ArrayList<Word>>(); 
+	ArrayList<Word> finalArray = new ArrayList<Word>();
+	for (int i = 0; i<allWords.size(); i++){
+		for (int l = 0; l<allWords.get(i).size(); l++){
+			finalArray.add(allWords.get(i).get(l));
+		}
+	}
+	return finalArray; 
+	}
+	
 	//Returns an ArrayList of Words that contain an argument ArrayList of letters
 	public ArrayList<Word> compileWords(ArrayList<Letter> playerLetters){
 	Dictionary d = new Dictionary(); 

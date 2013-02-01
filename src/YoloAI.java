@@ -42,7 +42,17 @@ public class YoloAI extends Player {
 	return bestWord; 
 	}
 	
-	public ArrayList<Word> compilePermutations(LetterBag b){
+	public ArrayList<Word> compilePermutations(ArrayList<Letter> playerLetters){
+	
+	//Goes through the array of letters passed in and converts it into a single String
+	String playerLettersCombined = "";
+	for (int i = 0; i<playerLetters.size(); i++){
+	playerLettersCombined.concat(playerLetters.get(i).getCharacter()+"");
+	}
+	
+	//Creates an ArrayList of all the possible Strings that can be made out of those letters
+	ArrayList<String> allStrings = new ArrayList<String>(); 
+	permutation(playerLettersCombined, allStrings);
 	
 	ArrayList<ArrayList<Word>> allWords = new ArrayList<ArrayList<Word>>(); 
 	ArrayList<Word> finalArray = new ArrayList<Word>();
@@ -178,16 +188,19 @@ public class YoloAI extends Player {
 		return trash; 
 	}
 
-	public  static void permutation(String str) { 
-	    permutation("", str); 
-	 }
+	public  static void permutation(String str, ArrayList<String> a) { 
+	    permutation("", str, a); 
+	}
 
-	 private static void permutation(String prefix, String str) {
+	 private static void permutation(String prefix, String str, ArrayList<String> a) {
 	    int n = str.length();
-	    if (n == 0) System.out.println(prefix);
-	    else {
+	    if (n == 0){
+	    System.out.println(prefix);
+	    a.add(prefix); 
+	    }
+	    	else {
 	        for (int i = 0; i < n; i++)
-	           permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n));
+	           permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n), a);
 	    }
 
 	}

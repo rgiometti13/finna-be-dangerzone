@@ -72,7 +72,8 @@ public class YoloAI extends Player {
 	for (int i = 0; i < availableLetters.size(); i++){
 	availableCharacters.add(i, availableLetters.get(i).getCharacter());
 	}
-	ArrayList<String> stringWords = d.allStringsWithLetters(availableCharacters);	
+	ArrayList<String> stringWords = d.allStringsWithLetters(availableCharacters);
+	
 	
 	for (int i = 0; i<stringWords.size(); i++){
 		boolean remove = true;
@@ -104,6 +105,26 @@ public class YoloAI extends Player {
 		wordsPossible.set(i, new Word(stringWords.get(i)));
 	}
 	return wordsPossible; 
+	}
+	
+	public ArrayList<String> stringLengths(ArrayList<String> a){
+		ArrayList<String> words=a;
+		ArrayList<String> initwords=new ArrayList<String>();
+		for(int i=0;i<words.size();i++){
+			initwords.add(words.get(i));
+			
+		}
+		int stringlength=initwords.get(1).length();
+		for(int i=0;i<stringlength;i++){
+			System.out.println(stringlength);
+			for(int x=0;x<initwords.size();x++){
+				String b=initwords.get(x).substring(0, initwords.get(1).length()-i);
+				words.add(b);
+				//initwords.set(x, b);
+			}
+		}
+		return words;
+		//find all possible lengths of string
 	}
 	
 	//wins the game
@@ -188,11 +209,12 @@ public class YoloAI extends Player {
 		return trash; 
 	}
 
-	public  static void permutation(String str, ArrayList<String> a) { 
+	public ArrayList<String> permutation(String str, ArrayList<String> a) { 
 	    permutation("", str, a); 
+	    return a;
 	}
 
-	 private static void permutation(String prefix, String str, ArrayList<String> a) {
+	 private ArrayList<String> permutation(String prefix, String str, ArrayList<String> a) {
 	    int n = str.length();
 	    if (n == 0){
 	    System.out.println(prefix);
@@ -202,12 +224,23 @@ public class YoloAI extends Player {
 	        for (int i = 0; i < n; i++)
 	           permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i+1, n), a);
 	    }
-
+	    return a;
 	}
 	
 public static void main(String[] Args){
+
 	LetterBag q=new LetterBag();
 	YoloAI yolo=new YoloAI(q);
+	ArrayList<String> allStrings = new ArrayList<String>();
+	allStrings=yolo.permutation("ABCD", allStrings);
+	allStrings=yolo.stringLengths(allStrings);
+	System.out.println(allStrings.toString());
+	
+	
+	
+	
+	
+	/*
 	ArrayList<Letter> letters=yolo.getLetters();
 
 	for(int i=0;i<letters.size();i++){
@@ -217,7 +250,12 @@ public static void main(String[] Args){
 	ArrayList<Word> words=yolo.compileWords(yolo.letters);
 	for(int a=0;a<words.size();a++){
 		System.out.println(words.get(a).toString());
-	}
+	}*/
+
+
+
+
+
 }
 
 }

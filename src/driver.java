@@ -3,6 +3,22 @@ import java.util.ArrayList;
 
 public class driver {
 
+	
+	public static ArrayList<String> stringLengths(ArrayList<String> a){
+		ArrayList<String> words=a;
+		ArrayList<String> initwords=a;
+		int num=initwords.get(1).length();
+		for(int i=0;i<num;i++){
+			for(int x=0;x<initwords.size();x++){
+				String b=initwords.get(x).substring(0, initwords.get(1).length()-i);
+				words.add(b);
+				initwords.set(x, b);
+			}
+		}
+		return words;
+		//find all possible lengths of string
+	}
+	
 	public  static void permutation(String str, ArrayList<String> a) { 
 	    permutation("", str, a); 
 	}
@@ -22,9 +38,9 @@ public class driver {
 
 	public static void main(String[] args) {
 	ArrayList<String> allStrings = new ArrayList<String>();
-	permutation("AB", allStrings);
+	permutation("ABCD", allStrings);
+	allStrings=stringLengths(allStrings);
 	System.out.println(allStrings.toString());
-	System.out.println(allStrings.get(1));
 	}
 
 }

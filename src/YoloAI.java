@@ -30,6 +30,7 @@ public class YoloAI extends Player {
 		return score; 
 	}
 	
+	//Returns the most valuable Word from an ArrayList of words
 	public Word wordOptimizer(ArrayList<Word> wa){
 	Word bestWord; 		
 	bestWord = new Word("Nothing");
@@ -42,15 +43,14 @@ public class YoloAI extends Player {
 	return bestWord; 
 	}
 	
-	public ArrayList<Word> compilePermutations(ArrayList<Letter> playerLetters){
 	
+	public ArrayList<Word> compilePermutations(ArrayList<Letter> playerLetters){
 	//Goes through the array of letters passed in and converts it into a single String
 	String playerLettersCombined = "";
 	for (int i = 0; i<playerLetters.size(); i++){
 	playerLettersCombined.concat(playerLetters.get(i).getCharacter()+"");
 	}
-	
-	//Creates an ArrayList of all the possible Strings that can be made out of those letters
+	//Creates an ArrayList of all the possible permutations of Strings that can be made out of that String
 	ArrayList<String> allStrings = new ArrayList<String>(); 
 	permutation(playerLettersCombined, allStrings);
 	
@@ -139,6 +139,7 @@ public class YoloAI extends Player {
 
 		
 	}
+	
 	//finds all words off of a given letter on the board
 	public ArrayList<Word> findWords(Letter a,ArrayList<Letter> g){
 		Dictionary d=new Dictionary();

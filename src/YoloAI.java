@@ -43,7 +43,7 @@ public class YoloAI extends Player {
 	return bestWord; 
 	}
 	
-	
+	//Returns an ArrayList of all the possible words that can come from an ArrayList of letters. 
 	public ArrayList<Word> compilePermutations(ArrayList<Letter> playerLetters){
 	Dictionary d = new Dictionary(); 
 	//Goes through the array of letters passed in and converts it into a single String
@@ -230,13 +230,7 @@ public static void main(String[] Args){
 
 	LetterBag q=new LetterBag();
 	YoloAI yolo=new YoloAI(q);
-	ArrayList<String> allStrings = new ArrayList<String>();
-	allStrings=yolo.permutation("ABCD", allStrings);
-	allStrings=yolo.stringLengths(allStrings);
-	System.out.println(allStrings.toString());
-	
-	
-	
+	System.out.print(yolo.compilePermutations(yolo.getLetters())); 	
 	
 	
 	/*

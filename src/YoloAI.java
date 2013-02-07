@@ -45,6 +45,7 @@ public class YoloAI extends Player {
 	
 	
 	public ArrayList<Word> compilePermutations(ArrayList<Letter> playerLetters){
+	Dictionary d = new Dictionary(); 
 	//Goes through the array of letters passed in and converts it into a single String
 	String playerLettersCombined = "";
 	for (int i = 0; i<playerLetters.size(); i++){
@@ -53,15 +54,12 @@ public class YoloAI extends Player {
 	//Creates an ArrayList of all the possible permutations of Strings that can be made out of that String
 	ArrayList<String> allStrings = new ArrayList<String>(); 
 	permutation(playerLettersCombined, allStrings);
-	
-	ArrayList<ArrayList<Word>> allWords = new ArrayList<ArrayList<Word>>(); 
-	ArrayList<Word> finalArray = new ArrayList<Word>();
-	for (int i = 0; i<allWords.size(); i++){
-		for (int l = 0; l<allWords.get(i).size(); l++){
-			finalArray.add(allWords.get(i).get(l));
-		}
+	stringLengths(allStrings);
+	ArrayList<Word> allWords = new ArrayList<Word>(); 
+	for (int i = 0; i < allStrings.size(); i++){
+	if (d.isWord(allStrings.get(i)) > -1) allWords.add(new Word(allStrings.get(i)));
 	}
-	return finalArray; 
+	return allWords; 
 	}
 	
 	//Returns an ArrayList of Words that contain an argument ArrayList of letters

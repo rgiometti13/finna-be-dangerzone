@@ -46,14 +46,18 @@ public class YoloAI extends Player {
 	//Returns an ArrayList of all the possible words that can come from an ArrayList of letters. 
 	public ArrayList<Word> compilePermutations(ArrayList<Letter> playerLetters){
 	Dictionary d = new Dictionary(); 
+	
 	//Goes through the array of letters passed in and converts it into a single String
-	String playerLettersCombined = "";
-	for (int i = 0; i<playerLetters.size(); i++){
-	playerLettersCombined.concat(playerLetters.get(i).getCharacter()+"");
+	String playerLettersCombined = "A";
+	for (int i = 0; i<playerLetters.size(); i++) {
+		playerLettersCombined = playerLettersCombined+(playerLetters.get(i).getCharacter()+"");
 	}
+	
 	//Creates an ArrayList of all the possible permutations of Strings that can be made out of that String
+	System.out.println("PlayerLetters: " + playerLettersCombined);
 	ArrayList<String> allStrings = new ArrayList<String>(); 
 	permutation(playerLettersCombined, allStrings);
+	System.out.println("AllStrings: " + allStrings.toString());
 	stringLengths(allStrings);
 	ArrayList<Word> allWords = new ArrayList<Word>(); 
 	for (int i = 0; i < allStrings.size(); i++){
@@ -62,48 +66,48 @@ public class YoloAI extends Player {
 	return allWords; 
 	}
 	
-	//Returns an ArrayList of Words that contain an argument ArrayList of letters
-	public ArrayList<Word> compileWords(ArrayList<Letter> playerLetters){
-	Dictionary d = new Dictionary(); 
-	ArrayList<Letter> availableLetters = playerLetters;
-	ArrayList<Character> availableCharacters = new ArrayList<Character>();
-	for (int i = 0; i < availableLetters.size(); i++){
-	availableCharacters.add(i, availableLetters.get(i).getCharacter());
-	}
-	ArrayList<String> stringWords = d.allStringsWithLetters(availableCharacters);
-	
-	
-	for (int i = 0; i<stringWords.size(); i++){
-		boolean remove = true;
-		for (int x = 0; x<stringWords.get(i).length(); x++){ 
-		remove = true; 
-			for (int l = 0; l < availableCharacters.size(); l++){
-				System.out.println(stringWords.get(i));
-				System.out.println(availableCharacters.get(l));
-				if ((stringWords.get(i).charAt(x)==(availableCharacters.get(l))))
-				{
-					
-					remove = false;
-					availableCharacters.remove(l);
-					l--;
-					
-				}
-				
-			}
-			if(remove==true){
-				x=stringWords.get(i).length()+1;
-			}
-		
-		}
-		if (remove == true) stringWords.remove(i);
-	}
-	
-	ArrayList<Word> wordsPossible = new ArrayList<Word>();
-	for (int i = 0; i < stringWords.size(); i++){
-		wordsPossible.set(i, new Word(stringWords.get(i)));
-	}
-	return wordsPossible; 
-	}
+//	//Returns an ArrayList of Words that contain an argument ArrayList of letters
+//	public ArrayList<Word> compileWords(ArrayList<Letter> playerLetters){
+//	Dictionary d = new Dictionary(); 
+//	ArrayList<Letter> availableLetters = playerLetters;
+//	ArrayList<Character> availableCharacters = new ArrayList<Character>();
+//	for (int i = 0; i < availableLetters.size(); i++){
+//	availableCharacters.add(i, availableLetters.get(i).getCharacter());
+//	}
+//	ArrayList<String> stringWords = d.allStringsWithLetters(availableCharacters);
+//	
+//	
+//	for (int i = 0; i<stringWords.size(); i++){
+//		boolean remove = true;
+//		for (int x = 0; x<stringWords.get(i).length(); x++){ 
+//		remove = true; 
+//			for (int l = 0; l < availableCharacters.size(); l++){
+//				System.out.println(stringWords.get(i));
+//				System.out.println(availableCharacters.get(l));
+//				if ((stringWords.get(i).charAt(x)==(availableCharacters.get(l))))
+//				{
+//					
+//					remove = false;
+//					availableCharacters.remove(l);
+//					l--;
+//					
+//				}
+//				
+//			}
+//			if(remove==true){
+//				x=stringWords.get(i).length()+1;
+//			}
+//		
+//		}
+//		if (remove == true) stringWords.remove(i);
+//	}
+//	
+//	ArrayList<Word> wordsPossible = new ArrayList<Word>();
+//	for (int i = 0; i < stringWords.size(); i++){
+//		wordsPossible.set(i, new Word(stringWords.get(i)));
+//	}
+//	return wordsPossible; 
+//	}
 	
 	public ArrayList<String> stringLengths(ArrayList<String> a){
 		ArrayList<String> words=a;
@@ -216,7 +220,7 @@ public class YoloAI extends Player {
 	 private ArrayList<String> permutation(String prefix, String str, ArrayList<String> a) {
 	    int n = str.length();
 	    if (n == 0){
-	    System.out.println(prefix);
+	    //System.out.println(prefix);
 	    a.add(prefix); 
 	    }
 	    	else {
@@ -227,9 +231,10 @@ public class YoloAI extends Player {
 	}
 	
 public static void main(String[] Args){
-
+	
 	LetterBag q=new LetterBag();
 	YoloAI yolo=new YoloAI(q);
+	System.out.println(yolo.getLetters());
 	System.out.print(yolo.compilePermutations(yolo.getLetters())); 	
 	
 	

@@ -63,7 +63,17 @@ public class YoloAI extends Player {
 	for (int i = 0; i < allStrings.size(); i++){
 	if (d.isWord(allStrings.get(i)) > -1) allWords.add(new Word(allStrings.get(i)));
 	}
-	return allWords; 
+	
+	ArrayList<Word> finalArray = new ArrayList<Word>();
+	boolean duplicate = false; 
+	for (int i = 0; i<allWords.size(); i++){
+		for (int x = 0; x <finalArray.size(); x++){
+			if (allWords.get(i)==finalArray.get(x)) duplicate = true; 
+		}
+		if (!duplicate) finalArray.add(allWords.get(i));
+		duplicate = false; 
+	}
+	return finalArray; 
 	}
 	
 //	//Returns an ArrayList of Words that contain an argument ArrayList of letters

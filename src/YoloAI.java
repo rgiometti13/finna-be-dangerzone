@@ -18,9 +18,14 @@ public class YoloAI extends Player {
 		board=b;
 	}
 	
-	public Word makeMove(Board b){
+	public Word makeMove(Board b, int x, int y, char direction){
 		Board board = b; 
 		Word word = new Word("Default");
+		word=wordOptimizer(compilePermutations(letters));
+		word.setLocation(x,y);
+		word.setDirection(direction);
+		b.addWord(word);
+		
 		return word; 
 	}
 	

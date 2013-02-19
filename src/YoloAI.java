@@ -2,6 +2,7 @@ import core.*;
 import core.Dictionary;
 
 import java.util.*;
+import java.awt.*;
 
 public class YoloAI extends Player {
 	public Board board;
@@ -18,14 +19,28 @@ public class YoloAI extends Player {
 		board=b;
 	}
 	
-	public Word makeMove(Board b, int x, int y, char direction){
+	
+	
+	
+	
+	public Word makeMove(Board b){
 		Board board = b; 
+		Space[][] brd=b.getArr();
 		Word word = new Word("Default");
+		ArrayList<Space> spaces=new ArrayList<Space>();
+		for(int x=0;x<15;x++){
+			for(int y=0;y<15;y++){
+				if(brd[x][y].getLetter().getCharacter()!='0'){
+					spaces.add(brd[x][y]);
+				}
+			}
+		}
+		if(spaces.size()==0){
 		word=wordOptimizer(compilePermutations(letters));
-		word.setLocation(x,y);
-		word.setDirection(direction);
+		word.setDirection('H');
+		word.setLocation(7, 7);
 		b.addWord(word);
-		
+		}
 		return word; 
 	}
 	

@@ -36,7 +36,7 @@ public class YoloAI extends Player {
 			}
 		}
 		if(spaces.size()==0){
-		word=wordOptimizer(compilePermutations(letters));
+		word=compilePermutations(letters);
 		word.setDirection('H');
 		word.setLocation(7, 7);
 		b.addWord(word);
@@ -64,7 +64,7 @@ public class YoloAI extends Player {
 	}
 	
 	//Returns an ArrayList of all the possible words that can come from an ArrayList of letters. 
-	public ArrayList<Word> compilePermutations(ArrayList<Letter> playerLetters){
+	public Word compilePermutations(ArrayList<Letter> playerLetters){
 	Dictionary d = new Dictionary(); 
 	
 	//Goes through the array of letters passed in and converts it into a single String
@@ -92,8 +92,9 @@ public class YoloAI extends Player {
 		}
 		if (!duplicate) finalArray.add(allWords.get(i));
 		duplicate = false; 
-	}
-	return finalArray; 
+	} 
+	Word f = wordOptimizer(finalArray); 
+	return f; 
 	}
 	
 //	//Returns an ArrayList of Words that contain an argument ArrayList of letters
@@ -265,10 +266,7 @@ public static void main(String[] Args){
 	LetterBag q=new LetterBag();
 	YoloAI yolo=new YoloAI(q);
 	System.out.println(yolo.getLetters());
-	Word f = yolo.wordOptimizer(yolo.compilePermutations(yolo.getLetters())); 
-	System.out.println(f);
-	System.out.println(yolo.trashTalk());
-	
+	System.out.println(yolo.compilePermutations(yolo.getLetters())); 
 	
 	/*
 	ArrayList<Letter> letters=yolo.getLetters();

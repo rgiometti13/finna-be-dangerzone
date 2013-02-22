@@ -68,7 +68,7 @@ public class YoloAI extends Player {
 	Dictionary d = new Dictionary(); 
 	
 	//Goes through the array of letters passed in and converts it into a single String
-	String playerLettersCombined = "A";
+	String playerLettersCombined = "";
 	for (int i = 0; i<playerLetters.size(); i++) {
 		playerLettersCombined = playerLettersCombined+(playerLetters.get(i).getCharacter()+"");
 	}
@@ -77,7 +77,7 @@ public class YoloAI extends Player {
 	System.out.println("PlayerLetters: " + playerLettersCombined);
 	ArrayList<String> allStrings = new ArrayList<String>(); 
 	permutation(playerLettersCombined, allStrings);
-	System.out.println("AllStrings: " + allStrings.toString());
+	//System.out.println("AllStrings: " + allStrings.toString());
 	stringLengths(allStrings);
 	ArrayList<Word> allWords = new ArrayList<Word>(); 
 	for (int i = 0; i < allStrings.size(); i++){
@@ -148,7 +148,7 @@ public class YoloAI extends Player {
 		}
 		int stringlength=initwords.get(1).length();
 		for(int i=0;i<stringlength;i++){
-			System.out.println(stringlength);
+			//System.out.println(stringlength);
 			for(int x=0;x<initwords.size();x++){
 				String b=initwords.get(x).substring(0, initwords.get(1).length()-i);
 				words.add(b);
@@ -265,7 +265,9 @@ public static void main(String[] Args){
 	LetterBag q=new LetterBag();
 	YoloAI yolo=new YoloAI(q);
 	System.out.println(yolo.getLetters());
-	System.out.print(yolo.compilePermutations(yolo.getLetters())); 	
+	Word f = yolo.wordOptimizer(yolo.compilePermutations(yolo.getLetters())); 
+	System.out.println(f);
+	System.out.println(yolo.trashTalk());
 	
 	
 	/*

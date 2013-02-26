@@ -51,9 +51,18 @@ public class YoloAI extends Player {
 	}
 	
 	//Returns the most valuable Word from an ArrayList of words
-	public Word wordOptimizer(ArrayList<Word> wa){
+	public Word wordOptimizer(ArrayList<Word> wa, ArrayList<Space> sa){
 	Word bestWord; 		
 	bestWord = new Word("Nothing");
+	
+//	int val=0; 
+//	for(int i = 0; i<wa.size(); i++){
+//	ArrayList<Letter> la= new ArrayList<Letter>(wa.get(i).getWordInLetters()); 
+//	for(int x = 0; x<sa.size(); x++){
+//		val+=word.sub
+//	}
+//	}
+	
 	for (int i = 0; i< wa.size(); i++){
 		if (i == 0) bestWord = wa.get(i);
 		else {

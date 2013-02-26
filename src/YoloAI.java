@@ -53,20 +53,33 @@ public class YoloAI extends Player {
 	//Returns the most valuable Word from an ArrayList of words
 	public Word wordOptimizer(ArrayList<Word> wa, ArrayList<Space> sa){
 	Word bestWord; 		
+	int bestVal = 0; 
+	ArrayList<Integer> wordVals = new ArrayList<Integer>();
 	bestWord = new Word("Nothing");
+	int val=0; 
+	int wordMultiplier = 1; 
+	for(int i = 0; i<wa.size(); i++){
+		for (int x = 0; x<wa.get(i).getWordInLetters().length; x++){
+			Letter[] a = wa.get(i).getWordInLetters();
+			int spaceType = sa.get(x).getTypeInt(); 
+			int spaceMultiplier = 1; 
+			if (spaceType == 1) spaceMultiplier = 2; 
+			else if (spaceType == 2) spaceMultiplier = 3; 
+			else if (spaceType == 3) wordMultiplier = 2; 
+			else if (spaceType == 4) wordMultiplier = 3; 
+			val += a[x].getVal()*spaceMultiplier; 
+		}
+	val= val*wordMultiplier; 
+	wordVals.add(val);
+	}
 	
-//	int val=0; 
-//	for(int i = 0; i<wa.size(); i++){
-//	ArrayList<Letter> la= new ArrayList<Letter>(wa.get(i).getWordInLetters()); 
-//	for(int x = 0; x<sa.size(); x++){
-//		val+=word.sub
-//	}
-//	}
-	
-	for (int i = 0; i< wa.size(); i++){
-		if (i == 0) bestWord = wa.get(i);
+	for (int i = 0; i< wordVals.size(); i++){
+		if (i == 0) {
+			bestWord = wa.get(i); 
+			bestVal = wordVals.get(i);
+		}
 		else {
-			if (wa.get(i).getVal()>bestWord.getVal()) bestWord = wa.get(i);
+			if (wordVals.get(i)>bestVal) bestVal=wordVals.get(i); bestWord = wa.get(i);
 		}	
 	}
 	return bestWord; 

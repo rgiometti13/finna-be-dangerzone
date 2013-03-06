@@ -36,9 +36,8 @@ public class YoloAI extends Player {
 				}
 			}
 		}
-		ArrayList<Space> sa = new ArrayList<Space>();
 		if(spaces.size()==0){
-		word=compilePermutations(letters,sa);
+		word=compilePermutations(letters);
 		word.setDirection('H');
 		word.setLocation(7, 7);
 		b.addWord(word);
@@ -53,42 +52,44 @@ public class YoloAI extends Player {
 	}
 	
 	//Returns the most valuable Word from an ArrayList of words
-	public Word wordOptimizer(ArrayList<Word> wa, ArrayList<Space> sa){
+//	public Word wordOptimizer(ArrayList<Word> wa, ArrayList<Space> sa){
+	public Word wordOptimizer(ArrayList<Word> wa){
 	Word bestWord; 		
-	int bestVal = 0; 
-	ArrayList<Integer> wordVals = new ArrayList<Integer>();
+//	int bestVal = 0; 
+//	ArrayList<Integer> wordVals = new ArrayList<Integer>();
 	bestWord = new Word("Nothing");
-	int val=0; 
-	int wordMultiplier = 1; 
-	for(int i = 0; i<wa.size(); i++){
-		for (int x = 0; x<wa.get(i).getWordInLetters().length; x++){
-			Letter[] a = wa.get(i).getWordInLetters();
-			int spaceType = sa.get(x).getTypeInt(); 
-			int spaceMultiplier = 1; 
-			if (spaceType == 1) spaceMultiplier = 2; 
-			else if (spaceType == 2) spaceMultiplier = 3; 
-			else if (spaceType == 3) wordMultiplier = 2; 
-			else if (spaceType == 4) wordMultiplier = 3; 
-			val += a[x].getVal()*spaceMultiplier; 
-		}
-	val= val*wordMultiplier; 
-	wordVals.add(val);
-	}
+//	int val=0; 
+//	int wordMultiplier = 1; 
+//	for(int i = 0; i<wa.size(); i++){
+//		for (int x = 0; x<wa.get(i).getWordInLetters().length; x++){
+//			Letter[] a = wa.get(i).getWordInLetters();
+//			int spaceType = sa.get(x).getTypeInt(); 
+//			int spaceMultiplier = 1; 
+//			if (spaceType == 1) spaceMultiplier = 2; 
+//			else if (spaceType == 2) spaceMultiplier = 3; 
+//			else if (spaceType == 3) wordMultiplier = 2; 
+//			else if (spaceType == 4) wordMultiplier = 3; 
+//			val += a[x].getVal()*spaceMultiplier; 
+//		}
+//	val= val*wordMultiplier; 
+//	wordVals.add(val);
+//	}
 	
-	for (int i = 0; i< wordVals.size(); i++){
+	for (int i = 0; i< wa.size(); i++){
 		if (i == 0) {
 			bestWord = wa.get(i); 
-			bestVal = wordVals.get(i);
+//			bestVal = wordVals.get(i);
 		}
 		else {
-			if (wordVals.get(i)>bestVal) bestVal=wordVals.get(i); bestWord = wa.get(i);
+			if (wa.get(i).getVal()>bestWord.getVal()) bestWord = wa.get(i);
 		}	
 	}
 	return bestWord; 
 	}
 	
 	//Returns an ArrayList of all the possible words that can come from an ArrayList of letters. 
-	public Word compilePermutations(ArrayList<Letter> playerLetters, ArrayList<Space> sa){
+//	public Word compilePermutations(ArrayList<Letter> playerLetters, ArrayList<Space> sa){
+	public Word compilePermutations(ArrayList<Letter> playerLetters){
 	Dictionary d = new Dictionary(); 
 	
 	//Goes through the array of letters passed in and converts it into a single String
@@ -117,7 +118,7 @@ public class YoloAI extends Player {
 		if (!duplicate) finalArray.add(allWords.get(i));
 		duplicate = false; 
 	} 
-	Word f = wordOptimizer(finalArray,sa); 
+	Word f = wordOptimizer(finalArray); 
 	return f; 
 	}
 	

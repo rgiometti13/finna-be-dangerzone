@@ -86,7 +86,7 @@ public class YoloAI extends Player {
 	}
 	
 	//Returns an ArrayList of all the possible words that can come from an ArrayList of letters. 
-	public Word compilePermutations(ArrayList<Letter> playerLetters){
+	public Word compilePermutations(ArrayList<Letter> playerLetters, ArrayList<Space> sa){
 	Dictionary d = new Dictionary(); 
 	
 	//Goes through the array of letters passed in and converts it into a single String
@@ -115,7 +115,7 @@ public class YoloAI extends Player {
 		if (!duplicate) finalArray.add(allWords.get(i));
 		duplicate = false; 
 	} 
-	Word f = wordOptimizer(finalArray); 
+	Word f = wordOptimizer(finalArray,sa); 
 	return f; 
 	}
 	

@@ -4,6 +4,7 @@ import core.Dictionary;
 import java.util.*;
 import java.awt.*;
 
+
 public class YoloAI extends Player {
 	public Board board;
 	
@@ -35,8 +36,9 @@ public class YoloAI extends Player {
 				}
 			}
 		}
+		ArrayList<Space> sa = new ArrayList<Space>();
 		if(spaces.size()==0){
-		word=compilePermutations(letters);
+		word=compilePermutations(letters,sa);
 		word.setDirection('H');
 		word.setLocation(7, 7);
 		b.addWord(word);

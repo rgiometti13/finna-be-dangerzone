@@ -25,7 +25,10 @@ public class YoloAI extends Player {
 	
 	
 	public Word makeMove(Board b){
-		Board board = b; 
+		ArrayList<Word> bestwords=new ArrayList<Word>();
+		ArrayList<Point> loc=new ArrayList<Point>();
+		Board board = b;
+		char direction;
 		Space[][] brd=b.getArr();
 		Word word = new Word("Default");
 		ArrayList<Space> spaces=new ArrayList<Space>();
@@ -41,6 +44,25 @@ public class YoloAI extends Player {
 		word.setDirection('H');
 		word.setLocation(7, 7);
 		b.addWord(word);
+		}
+		else{
+			for(int xx=0;xx<15;xx++){
+				for(int yy=0;yy<15;yy++){
+					if(brd[xx][yy].getLetter().getCharacter()!='0'){
+						letters.add(brd[xx][yy].getLetter());
+						bestwords.add(compilePermutations(letters));
+						loc.add(new Point(xx,yy));
+						if(brd[xx+1][yy].getLetter().getCharacter()!='0'){
+							direction='V';
+						}
+						else direction='H';
+					}
+					
+				}
+			}
+		}
+		for(int q=0;q<bestwords.size();q++){
+
 		}
 		return word; 
 	}

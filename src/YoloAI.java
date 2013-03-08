@@ -42,7 +42,7 @@ public class YoloAI extends Player {
 		if(spaces.size()==0){
 		word=compilePermutations(letters);
 		word.setDirection('H');
-		word.setLocation(7, 7);
+		word.setLocation(7,7);
 		b.addWord(word);
 		}
 		else{
@@ -131,6 +131,7 @@ public class YoloAI extends Player {
 	if (d.isWord(allStrings.get(i)) > -1) allWords.add(new Word(allStrings.get(i)));
 	}
 	
+	//Gets rid of all the duplicates of words in that array
 	ArrayList<Word> finalArray = new ArrayList<Word>();
 	boolean duplicate = false; 
 	for (int i = 0; i<allWords.size(); i++){
@@ -140,6 +141,8 @@ public class YoloAI extends Player {
 		if (!duplicate) finalArray.add(allWords.get(i));
 		duplicate = false; 
 	} 
+	
+	//finds the most valuable word in that array and returns it
 	Word f = wordOptimizer(finalArray); 
 	return f; 
 	}
@@ -295,7 +298,7 @@ public class YoloAI extends Player {
 	    return a;
 	}
 
-	 private ArrayList<String> permutation(String prefix, String str, ArrayList<String> a) {
+	private ArrayList<String> permutation(String prefix, String str, ArrayList<String> a) {
 	    int n = str.length();
 	    if (n == 0){
 	    //System.out.println(prefix);

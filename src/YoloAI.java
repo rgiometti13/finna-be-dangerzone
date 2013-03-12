@@ -116,6 +116,7 @@ public class YoloAI extends Player {
 	return best; 
 	}
 	
+	//For compiling best permutation off of the board with player letters and one board letter
 	public Word compilePermutations(ArrayList<Letter> playerLetters, Letter l){
 	String s = new String("None");
 	Word w = new Word(s); 

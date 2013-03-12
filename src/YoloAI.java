@@ -116,6 +116,12 @@ public class YoloAI extends Player {
 	return best; 
 	}
 	
+	public Word compilePermutations(ArrayList<Letter> playerLetters, Letter l){
+	String s = new String("None");
+	Word w = new Word(s); 
+	return 	w; 
+	}
+	
 	//Returns an ArrayList of all the possible words that can come from an ArrayList of letters. 
 //	public Word compilePermutations(ArrayList<Letter> playerLetters, ArrayList<Space> sa){
 	public Word compilePermutations(ArrayList<Letter> playerLetters){

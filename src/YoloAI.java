@@ -109,6 +109,13 @@ public class YoloAI extends Player {
 	return bestWord; 
 	}
 	
+	//Returns the best word that can be made off of a specific letter in a specific position
+	public Word compileSpecPermutations(ArrayList<Letter> playerLetters, Point loc, char dir){
+	Word compiled = compilePermutations(playerLetters);		
+	Word best = new	Word(compiled.getWord(), loc, dir); 
+	return best; 
+	}
+	
 	//Returns an ArrayList of all the possible words that can come from an ArrayList of letters. 
 //	public Word compilePermutations(ArrayList<Letter> playerLetters, ArrayList<Space> sa){
 	public Word compilePermutations(ArrayList<Letter> playerLetters){

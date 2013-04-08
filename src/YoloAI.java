@@ -27,6 +27,7 @@ public class YoloAI extends Player {
 	public Word makeMove(Board b){
 		ArrayList<Word> bestwords=new ArrayList<Word>();
 		ArrayList<Point> loc=new ArrayList<Point>();
+		ArrayList<Character> dir=new ArrayList<Character>();
 		Board board = b;
 		char direction;
 		Space[][] brd=b.getArr();
@@ -49,21 +50,46 @@ public class YoloAI extends Player {
 			for(int xx=0;xx<15;xx++){
 				for(int yy=0;yy<15;yy++){
 					if(brd[xx][yy].getLetter().getCharacter()!='0'){
-						letters.add(brd[xx][yy].getLetter());
-						bestwords.add(compilePermutations(letters));
+						bestwords.add(compilePermutations(letters, brd[xx][yy].getLetter()));
 						loc.add(new Point(xx,yy));
-						if(brd[xx+1][yy].getLetter().getCharacter()!='0'){
+						if(brd[xx+1][yy].getLetter().getCharacter()!='0' || brd[xx-1][yy].getLetter().getCharacter()!='0'){
 							direction='V';
 						}
 						else direction='H';
+						dir.add(direction);
 					}
 					
 				}
 			}
 		}
+		int val=0;
+		int index=0;
+		Point bestloc=new Point();
 		for(int q=0;q<bestwords.size();q++){
-
+			if(bestwords.get(q).getVal()>val)
+			{
+				val=bestwords.get(q).getVal();
+				index=q;
+				bestloc=loc.get(q);
+				word=bestwords.get(q);
+			}
 		}
+		int dist=0;
+		for(int h=0;h<word.getWord().length();h++){
+			if(word.getWord().charAt(h)==brd[(int)bestloc.getX()][(int)bestloc.getY()].getLetter().getCharacter()){
+				dist=h;
+			}
+		}
+		int bestx=(int)bestloc.getX();
+		int besty=(int)bestloc.getY();
+		if(dir.get(index)=='V'){
+			besty=besty-dist;
+		}
+		else if(dir.get(index)=='H'){
+			bestx=bestx-dist;
+		}
+		word.setLocation(new Point(bestx,besty));
+		word.setDirection(dir.get(index));
 		return word; 
 	}
 	
@@ -118,8 +144,11 @@ public class YoloAI extends Player {
 	
 	//For compiling best permutation off of the board with player letters and one board letter
 	public Word compilePermutations(ArrayList<Letter> playerLetters, Letter l){
-	String s = new String("None");
-	Word w = new Word(s); 
+	ArrayList<Letter> let=letters;
+	let.add(l);
+	
+	//String s = new String("None");
+	Word w = compilePermutations(let);
 	return 	w; 
 	}
 	

@@ -355,11 +355,12 @@ public class YoloAI extends Player {
 	}
 	
 public static void main(String[] Args){
-	
 	LetterBag q=new LetterBag();
 	YoloAI yolo=new YoloAI(q);
 	System.out.println(yolo.getLetters());
-	System.out.println(yolo.compilePermutations(yolo.getLetters())); 
+	Board b = new Board(); 
+	b.addWord(yolo.compilePermutations(yolo.getLetters())); 
+	
 	
 	/*
 	ArrayList<Letter> letters=yolo.getLetters();

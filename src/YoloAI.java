@@ -115,7 +115,9 @@ public class YoloAI extends Player {
 	
 	public int scoreWord(Word w){
 		int score = 0; 
-		
+		for(int i = 0; i < w.getWordInLetters().length; i++){
+		score = score+=w.getWordInLetters()[i].getVal();
+		}
 		return score; 
 	}
 	

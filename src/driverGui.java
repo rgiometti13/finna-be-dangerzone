@@ -28,10 +28,12 @@ public class driverGui {
 		Board b = new Board();
 		
 		YoloAI s = new YoloAI(new LetterBag());
-		Word word = s.makeMove(b);
-		b.addWord(word);
+		Word word1 = s.makeMove(b);
+		b.addWord(word1);
 		w.showBoard(b);
-
+		Word word2 = s.makeMove(b);
+		b.addWord(word2);
+		w.showBoard(b);
 	}
 	
 }

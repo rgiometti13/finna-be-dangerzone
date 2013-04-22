@@ -33,6 +33,7 @@ public class YoloAI extends Player {
 		Space[][] brd=b.getArr();
 		Word word = new Word("Default");
 		ArrayList<Space> spaces=new ArrayList<Space>();
+		
 		for(int x=0;x<15;x++){
 			for(int y=0;y<15;y++){
 				if(brd[x][y].getLetter().getCharacter()!='0'){
@@ -40,11 +41,18 @@ public class YoloAI extends Player {
 				}
 			}
 		}
+		System.out.println(spaces.size()+" spaces size");
 		if(spaces.size()==0){
 		word=compilePermutations(letters);
 		word.setDirection('H');
 		word.setLocation(7,7);
 		b.addWord(word);
+		//Letter [] wordletters=word.getWordInLetters();////////////////////////
+		/*for(int u=0;u<word.getWord().length();u++){
+			letters.remove(wordletters[u]);
+		}
+		//draw(7-letters.size());*/
+		return word;//////////////////////////////////////////////////////////added
 		}
 		else{
 			for(int xx=0;xx<15;xx++){
@@ -54,9 +62,13 @@ public class YoloAI extends Player {
 						loc.add(new Point(xx,yy));
 						if(brd[xx+1][yy].getLetter().getCharacter()!='0' || brd[xx-1][yy].getLetter().getCharacter()!='0'){
 							direction='V';
+							dir.add(direction);////added
 						}
-						else direction='H';
-						dir.add(direction);
+						else
+						{ 
+							direction='H';
+							dir.add(direction);
+						}
 					}
 					
 				}
@@ -65,8 +77,9 @@ public class YoloAI extends Player {
 		int val=0;
 		int index=0;
 		Point bestloc=new Point();
+		System.out.println(bestwords.size()+" bestword size");
 		for(int q=0;q<bestwords.size();q++){
-			if(bestwords.get(q).getVal()>val)
+			if(bestwords.get(q).getVal()>=val)
 			{
 				val=bestwords.get(q).getVal();
 				index=q;
@@ -82,6 +95,8 @@ public class YoloAI extends Player {
 		}
 		int bestx=(int)bestloc.getX();
 		int besty=(int)bestloc.getY();
+		System.out.println(index+ " index");
+		System.out.println(dir.size()+" size");
 		if(dir.get(index)=='V'){
 			besty=besty-dist;
 		}
@@ -90,6 +105,11 @@ public class YoloAI extends Player {
 		}
 		word.setLocation(new Point(bestx,besty));
 		word.setDirection(dir.get(index));
+		//Letter [] wordletters=word.getWordInLetters();///////////////////
+		/*for(int u=0;u<word.getWord().length();u++){
+			letters.remove(wordletters[u]);
+		}////////////////////////////////////////////////////////////////
+		//draw(7-letters.size());*/
 		return word; 
 	}
 	

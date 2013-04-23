@@ -47,11 +47,12 @@ public class YoloAI extends Player {
 		word.setDirection('H');
 		word.setLocation(7,7);
 		b.addWord(word);
-		//Letter [] wordletters=word.getWordInLetters();////////////////////////
-		/*for(int u=0;u<word.getWord().length();u++){
+		Letter [] wordletters=word.getWordInLetters();////////////////////////
+		for(int u=0;u<word.getWord().length();u++){
 			letters.remove(wordletters[u]);
 		}
-		//draw(7-letters.size());*/
+		draw(7-letters.size());
+		System.out.println(word.getWord());
 		return word;//////////////////////////////////////////////////////////added
 		}
 		else{
@@ -105,11 +106,12 @@ public class YoloAI extends Player {
 		}
 		word.setLocation(new Point(bestx,besty));
 		word.setDirection(dir.get(index));
-		//Letter [] wordletters=word.getWordInLetters();///////////////////
-		/*for(int u=0;u<word.getWord().length();u++){
+		Letter [] wordletters=word.getWordInLetters();///////////////////
+		for(int u=0;u<word.getWord().length();u++){
 			letters.remove(wordletters[u]);
 		}////////////////////////////////////////////////////////////////
-		//draw(7-letters.size());*/
+		draw(7-letters.size());
+		System.out.println(word.getWord());
 		return word; 
 	}
 	

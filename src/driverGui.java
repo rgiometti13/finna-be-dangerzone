@@ -28,6 +28,8 @@ public class driverGui {
 		Board b = new Board();
 		
 		YoloAI s = new YoloAI(new LetterBag());
+		//b.addWord(new Word("AND",new Point(7,7),'H'));
+		//b.addWord(new Word("CAT",new Point(7,6),'V'));
 		Word word1 = s.makeMove(b);
 		b.addWord(word1);
 		w.showBoard(b);

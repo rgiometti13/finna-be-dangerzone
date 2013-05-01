@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class YoloAI extends Player {
 	public Board board;
-	
+	int count=0;
 	
 	public YoloAI(LetterBag ls) {
 		super(ls);
@@ -19,7 +19,6 @@ public class YoloAI extends Player {
 	public void readBoard(Board b){
 		board=b;
 	}
-	
 	
 	
 	
@@ -49,11 +48,12 @@ public class YoloAI extends Player {
 		b.addWord(word);
 		Letter [] wordletters=word.getWordInLetters();////////////////////////
 		System.out.println(letters);
+		//System.out.println(wordletters.length);
 		for(int u=0;u<letters.size();u++){
 			for(int f=0;f<wordletters.length;f++){
 				if(letters.get(u).getCharacter()==wordletters[f].getCharacter()){
 					letters.remove(u);
-					f+=7;
+					
 				}
 			}
 
@@ -65,10 +65,14 @@ public class YoloAI extends Player {
 		return word;//////////////////////////////////////////////////////////added
 		}
 		else{
+			ArrayList<Letter>playerletters=letters;
 			for(int xx=0;xx<15;xx++){
 				for(int yy=0;yy<15;yy++){
 					if(brd[xx][yy].getLetter().getCharacter()!='0'){
-						bestwords.add(compilePermutations(letters, brd[xx][yy].getLetter()));
+						//letters.add(brd[xx][yy].getLetter());////////////////////////////////
+						bestwords.add(compilePermutations(playerletters, brd[xx][yy].getLetter()));
+						System.out.println(xx+"xx");
+						System.out.println(yy+"yy");
 						loc.add(new Point(xx,yy));
 						if(brd[xx+1][yy].getLetter().getCharacter()!='0' || brd[xx-1][yy].getLetter().getCharacter()!='0'){
 							direction='V';
@@ -79,6 +83,8 @@ public class YoloAI extends Player {
 							direction='H';
 							dir.add(direction);
 						}
+						xx+=15;
+						yy+=15;
 					}
 					
 				}
@@ -103,6 +109,7 @@ public class YoloAI extends Player {
 				dist=h;
 			}
 		}
+		index=0;/////
 		int bestx=(int)bestloc.getX();
 		int besty=(int)bestloc.getY();
 		System.out.println(index+ " index");
@@ -114,7 +121,8 @@ public class YoloAI extends Player {
 			bestx=bestx-dist;
 		}
 		word.setLocation(new Point(bestx,besty));
-		word.setDirection(dir.get(index));
+		//word.setDirection(dir.get(index));
+		word.setDirection('V');
 		Letter [] wordletters=word.getWordInLetters();///////////////////
 		System.out.println(letters);
 		for(int u=0;u<letters.size();u++){
@@ -228,6 +236,8 @@ public class YoloAI extends Player {
 	
 	//finds the most valuable word in that array and returns it
 	Word f = wordOptimizer(finalArray); 
+	System.out.println(count+"compilepermutations");
+	count++;
 	return f; 
 	}
 	

@@ -8,7 +8,7 @@ import java.awt.*;
 public class YoloAI extends Player {
 	public Board board;
 	int count=0;
-	
+	int numTurns=0;
 	public YoloAI(LetterBag ls) {
 		super(ls);
 		// TODO Auto-generated constructor stub
@@ -24,6 +24,7 @@ public class YoloAI extends Player {
 	
 	
 	public Word makeMove(Board b){
+		numTurns++;
 		ArrayList<Word> bestwords=new ArrayList<Word>();
 		ArrayList<Point> loc=new ArrayList<Point>();
 		ArrayList<Character> dir=new ArrayList<Character>();
@@ -122,7 +123,12 @@ public class YoloAI extends Player {
 		}
 		word.setLocation(new Point(bestx,besty));
 		//word.setDirection(dir.get(index));
-		word.setDirection('V');
+		if(numTurns%2==0){
+			word.setDirection('V');
+		}
+		else{
+			word.setDirection('H');
+		}
 		Letter [] wordletters=word.getWordInLetters();///////////////////
 		System.out.println(letters);
 		for(int u=0;u<letters.size();u++){

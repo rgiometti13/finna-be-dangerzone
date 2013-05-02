@@ -38,6 +38,9 @@ public class driverGui {
 		b.addWord(word2);
 		w.showBoard(b);
 		//}
+		Word word3= s.makeMove(b);
+		b.addWord(word3);
+		w.showBoard(b);
 	}
 	
 }

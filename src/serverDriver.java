@@ -11,7 +11,7 @@ import core.Player;
 import core.Word;
 
 public class serverDriver {
-	private static String hostname = "localhost";
+	private static String hostname = "10.80.4.159";
 	private static int port = 8080;
 
 	public synchronized static void main(String[] args) {
